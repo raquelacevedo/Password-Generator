@@ -26,10 +26,15 @@
                 <div class="content">
                     <h4>Random Password Generator</h4>
                     <br />
-                    <input type="text" id="display">
+                    <input type="text" id="display" onkeyup="manage(this)">
                     <br />
-                    <button onclick="generate()">Generate</button>
-                    <button onclick="copyPassword()">Copy to Clipboard</button>      
+                    <br />
+                    <input type="text" id="userlength" onkeyup="manage(this)" maxlength="2" size="2" >
+                    <div>Input Password Length</div>
+                    <br>
+                    <br />
+                    <button id = "pwd"   onclick="generate()">Generate</button>
+                    <button type = "submit" id = "num" disabled  onclick="copyPassword()">Copy to Clipboard</button>      
                 </div>
             </div>
         </div>
