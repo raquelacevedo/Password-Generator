@@ -11,15 +11,7 @@ $(document).ready(function() {
       else if (document.getElementById('cbox4').checked)
         characterSet += '!@#$%^&*(){}[]?';
   
-      // handling of special characters
-      var extraChars = document.getElementById('cbox4')
-                               .value;
-      for (const character of extraChars) {
-        if (character !== ' ' && characterSet.indexOf(character) == -1) {
-          characterSet += character;
-        }
-      }
-  
+ 
       // Generate the password based on input.
       var passwordLength = Number(document.getElementById('passwordLength')
                                           .value);
