@@ -1,44 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Random Password Generator</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 
 
 </head>
+
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <nav class="navbar navbar-dark bg-success">
         <a class="navbar-brand" href="#">Random Password Generator</a>
     </nav>
-
     <div class="container">
-
         <div class="row">
 
             <div class="col-lg-8 col-sm-12 mx-auto">
 
                 <div class="content">
-                    <h4>Random Password Generator</h4>
-                    <br />
-                    <input type="text" id="display" onkeyup="manage(this)">
-                    <br />
-                    <br />
-                    <input type="text" id="userlength" onkeyup="manage(this)" maxlength="2" size="2" >
-                    <div>Input Password Length</div>
-                    <br>
-                    <br />
-                    <button id = "pwd"   onclick="generate()">Generate</button>
-                    <button type = "submit" id = "num" disabled  onclick="copyPassword()">Copy to Clipboard</button>      
+
+                    <div>
+                        <h3>Password Generator</h3>
+                        <p>To create a password input length and check on desired password requirements.</p>
+                        <h5>Length</h5>
+                        <p>Input a number.</p>
+                        <input type="number" id="passwordLength" class="inputNumber" value=8 min=0 max=128
+                            pattern="[0-9]">
+                        </input>
+
+                    </div>
+                    <div>
+                    <h5>Password Requirements</h5>
+                    <p>Check desired password requirements</p>
+                    <div id="Options" class="Menu">
+                        <div>
+                            <div class="checkboxes">
+                                <label><input type="checkbox" id="cbox1"> Upper Case Letters</label>
+                                <label><input type="checkbox" id="cbox2"> Lower Case Letters</label>
+                                <label><input type="checkbox" id="cbox3"> Numbers</label>
+                                <label><input type="checkbox" id="cbox4"> Special Characters</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                        <button type="button" id="generateButton" class="button2">Generate!</button>
+                        <button type="submit" onclick="copyPassword()">Copy to Clipboard</button>
+                    </div>
+                    <div>
+                        <textarea type="text" id="result" class="outputText"></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <script src="randompwd.js"></script>
+            <script type="text/javascript" src="randompwd.js"></script>
 </body>
+
 </html>

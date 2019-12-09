@@ -1,60 +1,52 @@
-function generate( len ) {
-//    var length = "";
-    //set password length/complexity
-       var pwdlen = document.getElementById("userlength").value;
-       //string of values that make a strong password
-       var values = "ABCDEFGHIJKLMNOPQRSTUVWZYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+";
-
-       var password = "";
-   
-       //create for loop to choose password characters based on the length received from user
-       for(var i = 0; i <= pwdlen; i++){
-           password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
-       } 
-
-        //add password to textbox/display area
-        document.getElementById("display").value = password;
-
-}
-
-//set default length display of 10
-document.getElementById("length").innerHTML = "Length: 10";
-
-//Use length to return password string
-document.getElementById("userlength").oninput = function(){
-
-    if(document.getElementById("userlength").value > 0){
-        document.getElementById("length").innerHTML = "length: " + document.getElementById("userlength").value;
-    }
-    else{
-        document.getElementById("length").innerHTML = "Length: 1";
-    }
-
-}
-
-var output = document.getElementById('output');
-
-function generator() {
-    output.innerHTML = generate();
-}
-
-function copyPassword(){
-
-    document.getElementById("display").select();
-
-    document.execCommand("Copy");
-
-    alert("Your Strong Password has been copied to the clipboard!");
-
-}
-
-//buttons...not working as designed :-(
-function manage(display) {
-    var bt = document.getElementById('num');
-    if (display.value != '') {
-        bt.disabled = false;
-    }
-    else {
-        bt.disabled = true;
-    }
-}  
+$(document).ready(function() {
+    $(".button2").click(function() {
+      var characterSet = "";
+      if (document.getElementById("cbox1").checked)
+        characterSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (document.getElementById("cbox2").checked)
+        characterSet += "abcdefghijklmnopqrstuvwxyz";
+      if (document.getElementById("cbox3").checked) characterSet += "0123456789";
+      if (document.getElementById('cbox4').checked)
+        characterSet += '-=~!@#$%^&*()_+[]\\{}|;\':",./<>?';
+      else if (document.getElementById('cbox4').checked)
+        characterSet += '!@#$%^&*(){}[]?';
+  
+      // handling of special characters
+      var extraChars = document.getElementById('cbox4')
+                               .value;
+      for (const character of extraChars) {
+        if (character !== ' ' && characterSet.indexOf(character) == -1) {
+          characterSet += character;
+        }
+      }
+  
+      // Generate the password based on input.
+      var passwordLength = Number(document.getElementById('passwordLength')
+                                          .value);
+      var randomNums = new Uint8Array(passwordLength);
+      window.crypto.getRandomValues(randomNums);
+      var password = '';
+      for (var i = 0; i < passwordLength; ++i) {
+        password += characterSet.charAt(randomNums[i] % characterSet.length);
+      }
+  
+      // Show the password.
+      document.getElementById("result")
+              .value = password;
+    });
+  });
+  
+  
+  
+  function copyPassword(){
+  
+      document.getElementById("result").select();
+  
+      document.execCommand("Copy");
+  
+      alert("Your Strong Password has been copied to the clipboard!");
+  
+  }
+  
+  
+  
